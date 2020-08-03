@@ -1,0 +1,20 @@
+{
+  "name": "eslint-ast",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:stefanpenner/eslint-ast.git",
+  "author": "Stefan Penner <stefan.penner@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^8.1.0"
+  },
+  "scripts": {
+    "example": "eslint .",
+    "example:lint": "eslint projects/*/example",
+    "example:lint:debug": "node debug ./node_modules/.bin/eslint projects/*/example",
+    "test": "mocha projects/*/tests/**/*-test.js",
+    "test:debug": "mocha --inspect-brk projects/*/tests/**/*-test.js"
+  },
+  "private": true
+}
