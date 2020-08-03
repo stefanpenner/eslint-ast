@@ -1,0 +1,20 @@
+fragment Apple on Fruit {
+  id
+  name
+}
+
+query queryName {
+  allFruit {
+    ...Apple
+    orange
+  }
+}
+
+# query queryName2 {
+#   allFruit {
+#     ...Apple
+#     orange
+#   }
+# }
+
+

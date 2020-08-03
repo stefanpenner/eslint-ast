@@ -1,0 +1,8 @@
+{
+  "scripts": {
+    "lint": "../node_modules/.bin/eslint ."
+  },
+  "dependencies": {
+    "eslint-plugin-graphql": "link:../eslint"
+  }
+}

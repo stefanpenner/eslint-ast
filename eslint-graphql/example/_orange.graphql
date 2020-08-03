@@ -1,0 +1,4 @@
+fragment Orange on Fruit {
+  id
+  name
+}
