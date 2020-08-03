@@ -1,5 +1,5 @@
 'use strict';
-const IMPORT_REGEXP = /^#import (?:'([^']*)'|"([^"]*)")$/;
+const IMPORT_REGEXP = /^#import (?:'([^']+)'|"([^"]+)")$/;
 
 module.exports = function matchImport(value) {
   if (typeof value !== 'string') { return null; }
