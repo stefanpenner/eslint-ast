@@ -17,6 +17,22 @@ describe('graphql/single-top-level-query', function() {
           `fragment Apple on Fruit { id }`,
           // one query
           `query { fooBar { id }}`,
+          `
+query {
+ allSavedSearches {
+    query
+    objectWithComplexMutations{
+      mutation{
+        id
+        name
+      }
+    }
+    objectWithSubscription {
+      subscription
+    }
+  }
+}
+          `
         ],
         invalid: [
 

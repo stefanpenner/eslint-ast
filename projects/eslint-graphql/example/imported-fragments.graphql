@@ -3,18 +3,18 @@ fragment Apple on Fruit {
   name
 }
 
-query queryName {
-  allFruit {
-    ...Apple
-    orange
-  }
-}
-
-# query queryName2 {
+# query queryName {
 #   allFruit {
 #     ...Apple
 #     orange
 #   }
 # }
+
+query queryName2 {
+  allFruit {
+    ...Apple
+    orange
+  }
+}
 
 
