@@ -1,4 +1,11 @@
 'use strict';
+const FILES = {
+  '_my-file.grapqh': `
+  fragment myFragment on Apple {
+    id
+  }
+  `
+}
 
 // this rule errors if we have more then one top level query
 module.exports = {

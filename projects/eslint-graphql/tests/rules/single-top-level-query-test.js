@@ -31,8 +31,7 @@ query {
       subscription
     }
   }
-}
-          `
+}`
         ],
         invalid: [
 
