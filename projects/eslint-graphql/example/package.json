@@ -1,8 +1,13 @@
 {
+  "private": true,
   "scripts": {
-    "lint": "../node_modules/.bin/eslint ."
+    "lint": "eslint .",
+    "test": "eslint ."
   },
   "dependencies": {
-    "eslint-plugin-graphql": "link:../eslint"
+    "@eslint-ast/eslint-plugin-graphql": "link:../eslint"
+  },
+  "devDependencies": {
+    "eslint": "^7.6.0"
   }
 }

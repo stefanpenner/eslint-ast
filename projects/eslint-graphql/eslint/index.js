@@ -4,9 +4,6 @@ module.exports = {
   rules: {
      get 'single-top-level-query'() {
        return require('./rules/single-top-level-query');
-     },
-     get 'validate-imports'() {
-       return require('./rules/validate-imports');
      }
   },
 
