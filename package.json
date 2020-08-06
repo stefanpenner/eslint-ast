@@ -20,5 +20,8 @@
   "volta": {
     "node": "10.22.0",
     "yarn": "1.22.4"
+  },
+  "dependencies": {
+    "eslint": "^7.6.0"
   }
 }
