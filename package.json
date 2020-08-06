@@ -16,5 +16,9 @@
     "test": "mocha projects/*/tests/**/*-test.js",
     "test:debug": "mocha --inspect-brk projects/*/tests/**/*-test.js"
   },
-  "private": true
+  "private": true,
+  "volta": {
+    "node": "10.22.0",
+    "yarn": "1.22.4"
+  }
 }
