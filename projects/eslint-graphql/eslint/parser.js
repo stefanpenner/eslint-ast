@@ -2,7 +2,6 @@
 
 const { parse, visit } = require('graphql');
 const gqlToEs = require('./gql-node-to-es-node');
-const parseImports = require('./parse-imports');
 
 module.exports.parseForESLint = function(code, options) {
   let ast;
@@ -19,11 +18,6 @@ module.exports.parseForESLint = function(code, options) {
   // turn graphql AST into eslint compatible AST
   visit(ast, { enter: gqlToEs });
 
-  // handle comment import statements
-  // since graphql AST ignores comments, we have to do that ourselves for
-  // imports
-  ast.definitions.unshift(...parseImports(code))
-
   return {
     ast,
     // TODO: actually implement when we need it
@@ -35,9 +29,25 @@ module.exports.parseForESLint = function(code, options) {
         debugger
       }
     },
-    service: {
-      getFilePath() {
-        return filePath;
+    services: {
+      parse(source, visitor = {}) {
+        const ast = parse(source);
+        visit(ast, {
+          ...visitor,
+          enter: gqlToEs,
+        });
+        return ast;
+      },
+
+      getFragmentDefinitionsFromSource(source) {
+        const fragmentDefinitions = [];
+        this.parse(source, {
+          FragmentDefinition(node) {
+            fragmentDefinitions.push(node);
+          }
+        });
+
+        return fragmentDefinitions;
       }
     },
     // TODO: verify this is the required set. Note: if something isn't here, it

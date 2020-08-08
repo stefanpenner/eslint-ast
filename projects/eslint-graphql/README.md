@@ -8,7 +8,27 @@ provides native eslint functionality.
 ## Usage
 
 ```sh
-yarn add <project-name> --dev
+yarn add @eslint-ast/eslint-plugin-graphql
+```
+
+```js
+// .eslintrc.js
+module.exports = {
+  root: true,
+  overrides: [
+    {
+      files: '**/*.graphql',
+      parser: '@eslint-ast/eslint-plugin-graphql/parser',
+      plugins: [
+        '@eslint-ast/eslint-plugin-graphql',
+      ],
+
+      rules: {
+        '@eslint-ast/graphql/single-top-level-query': 'error'
+      },
+    },
+  ],
+};
 ```
 
 ## vim-coc users

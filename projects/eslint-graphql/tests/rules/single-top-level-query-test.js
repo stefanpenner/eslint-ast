@@ -1,23 +1,17 @@
 'use strict';
 
-const { RuleTester } = require('eslint');
+const tester = require('./rule-tester');
 
-const tester = new RuleTester({
-  parser: `${__dirname}/../../eslint/parser.js`,
-});
-
-describe('graphql/single-top-level-query', function() {
-  it('works', function(){
-    tester.run(
-      'graphql/single-top-level-query',
-      require('eslint-plugin-graphql/rules/single-top-level-query'),
-      {
-        valid: [
-          // no query, just fragment
-          `fragment Apple on Fruit { id }`,
-          // one query
-          `query { fooBar { id }}`,
-          `
+tester.run(
+  'graphql/single-top-level-query',
+  require('../../eslint/rules/single-top-level-query'),
+  {
+    valid: [
+      // no query, just fragment
+      `fragment Apple on Fruit { id }`,
+      // one query
+      `query { fooBar { id }}`,
+      `
 query {
  allSavedSearches {
     query
@@ -32,45 +26,91 @@ query {
     }
   }
 }`
-        ],
-        invalid: [
+    ],
+    invalid: [
 
-          {// two queries
-            code: `
+      {// two queries
+        code: `
         query { fooBar { id } }
         query { fooBar { id } }
         `,
-            errors: [
-              { message: 'multiple top level queries found' },
-              { message: 'multiple top level queries found' }
-            ]
+        errors: [
+          {
+            message: 'multiple top level queries found',
+            type: 'OperationDefinition',
+            line: 2,
+            column: 10,
+            endLine: 2,
+            endColumn: 32,
           },
+          {
+            message: 'multiple top level queries found',
+            type: 'OperationDefinition',
+            line: 3,
+            column: 10,
+            endLine: 3,
+            endColumn: 32,
+          }
+        ]
+      },
 
 
-          {// two queries (with names)
-            code: `
+      {// two queries (with names)
+        code: `
         query Foo { fooBar { id } }
         query Bar { fooBar { id } }
         `,
-            errors: [
-              { message: 'multiple top level queries found' },
-              { message: 'multiple top level queries found' }
-            ]
+        errors: [
+          {
+            message: 'multiple top level queries found',
+            type: 'OperationDefinition',
+            line: 2,
+            column: 10,
+            endLine: 2,
+            endColumn: 36,
           },
-          {// three queries
-            code: `
+          {
+            message: 'multiple top level queries found',
+            type: 'OperationDefinition',
+            line: 3,
+            column: 10,
+            endLine: 3,
+            endColumn: 36,
+          }
+        ]
+      },
+      {// three queries
+        code: `
         query { fooBar { id } }
         query { fooBar { id } }
         query { fooBar { id } }
         `,
-            errors: [
-              { message: 'multiple top level queries found' },
-              { message: 'multiple top level queries found' },
-              { message: 'multiple top level queries found' }
-            ]
+        errors: [
+          {
+            message: 'multiple top level queries found',
+            type: 'OperationDefinition',
+            line: 2,
+            column: 10,
+            endLine: 2,
+            endColumn: 32,
+          },
+          {
+            message: 'multiple top level queries found',
+            type: 'OperationDefinition',
+            line: 3,
+            column: 10,
+            endLine: 3,
+            endColumn: 32,
+          },
+          {
+            message: 'multiple top level queries found',
+            type: 'OperationDefinition',
+            line: 4,
+            column: 10,
+            endLine: 4,
+            endColumn: 32,
           }
         ]
-
-      });
+      }
+    ]
   });
-});

@@ -1,5 +1,5 @@
 {
-  "name": "eslint-graphql",
+  "name": "@graphql-ast/eslint-plugin-graphql",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
@@ -8,9 +8,9 @@
     "mocha": "^8.1.0"
   },
   "devDependencies": {
-    "eslint-plugin-graphql": "link:./eslint/",
     "chai": "^4.2.0",
-    "eslint": "^7.5.0"
+    "eslint": "^7.5.0",
+    "fixturify-project": "^2.1.0"
   },
   "scripts": {
     "example": "eslint .",
