@@ -1,5 +1,5 @@
 {
-  "name": "eslint-example",
+  "name": "@eslint-ast/eslint-plugin-example",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",

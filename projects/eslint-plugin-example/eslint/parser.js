@@ -1,6 +1,7 @@
 'use strict';
 
 function parse(code, options) {
+  return {};
   // TODO: implement
 }
 
@@ -22,7 +23,6 @@ module.exports.parseForESLint = function(code, options) {
 
   // turn graphql AST into eslint compatible AST
   visit(ast, { enter });
-  ast.definitions.unshift(...parseImports(code))
 
   return {
     ast,
