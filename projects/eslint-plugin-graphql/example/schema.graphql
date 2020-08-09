@@ -1,0 +1,9 @@
+type User {
+  id: String!
+  name: String!
+  orange: Boolean!
+}
+
+type Query {
+  allFruit: [User]
+}

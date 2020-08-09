@@ -13,8 +13,8 @@
     "example": "eslint .",
     "example:lint": "eslint projects/*/example",
     "example:lint:debug": "node debug ./node_modules/.bin/eslint projects/*/example",
-    "test": "mocha projects/*/tests/**/*-test.js",
-    "test:debug": "mocha --inspect-brk projects/*/tests/**/*-test.js"
+    "test": "mocha projects/*/tests/**-test.js",
+    "test:debug": "mocha --inspect-brk projects/*/tests/**-test.js"
   },
   "dependencies": {},
   "devDependencies": {

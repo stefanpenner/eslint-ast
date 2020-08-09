@@ -3,7 +3,8 @@
 Provides native eslint support for graphql
 
 This project converts graphql AST into an AST eslint supports, and then
-provides native eslint functionality.
+provides native eslint functionality for both authoring new graphql validation
+rules, and running graphql's provided validation rules.
 
 ## Usage
 
@@ -19,13 +20,13 @@ module.exports = {
     {
       files: '**/*.graphql',
       parser: '@eslint-ast/eslint-plugin-graphql/parser',
+      parserOptions: {
+        schema: `${__dirname}/path/to/schema.graphql`
+      },
       plugins: [
         '@eslint-ast/eslint-plugin-graphql',
       ],
-
-      rules: {
-        '@eslint-ast/graphql/single-top-level-query': 'error'
-      },
+      extends: require.resolve('@eslint-ast/eslint-plugin-graphql/recommended.js'),
     },
   ],
 };

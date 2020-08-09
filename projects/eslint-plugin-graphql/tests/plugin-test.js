@@ -6,7 +6,37 @@ describe('graphql-eslint plugin', function() {
 
   it('has expected rules', function() {
     expect(plugin.rules['single-top-level-query']).to.be.a('object');
-    expect(plugin.rules['validate-imports']).to.be.a('object');
+
+    for (const ruleName of [
+      "ExecutableDefinitionsRule",
+      "UniqueOperationNamesRule",
+      "LoneAnonymousOperationRule",
+      "SingleFieldSubscriptionsRule",
+      "KnownTypeNamesRule",
+      "FragmentsOnCompositeTypesRule",
+      "VariablesAreInputTypesRule",
+      "ScalarLeafsRule",
+      "FieldsOnCorrectTypeRule",
+      "UniqueFragmentNamesRule",
+      "KnownFragmentNamesRule",
+      "NoUnusedFragmentsRule",
+      "PossibleFragmentSpreadsRule",
+      "NoFragmentCyclesRule",
+      "UniqueVariableNamesRule",
+      "NoUndefinedVariablesRule",
+      "NoUnusedVariablesRule",
+      "KnownDirectivesRule",
+      "UniqueDirectivesPerLocationRule",
+      "KnownArgumentNamesRule",
+      "UniqueArgumentNamesRule",
+      "ValuesOfCorrectTypeRule",
+      "ProvidedRequiredArgumentsRule",
+      "VariablesInAllowedPositionRule",
+      "OverlappingFieldsCanBeMergedRule",
+      "UniqueInputFieldNamesRule"
+    ]) {
+      expect(plugin.rules[ruleName]).to.be.a('object');
+    }
   });
 
   it('has the expected members', function() {

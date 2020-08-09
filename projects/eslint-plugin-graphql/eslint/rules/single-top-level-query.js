@@ -21,7 +21,7 @@ module.exports = {
         if (queryCount === 0) {
           firstQueryNode = node;
         } else if (queryCount === 1) {
-          context.report({
+          context.report( {
             messageId: 'multipleQueries',
             node: firstQueryNode
           });

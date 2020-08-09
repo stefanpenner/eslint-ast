@@ -1,14 +1,17 @@
-fragment Apple on Fruit {
+fragment Apple on  User {
   id
   name
+  # eslint-disable-next-line
+  n
 }
 
-# query queryName {
-#   allFruit {
-#     ...Apple
-#     orange
-#   }
-# }
+# eslint-disable @eslint-ast/graphql/single-top-level-query
+query queryName {
+  allFruit {
+    ...Apple
+    orange
+  }
+}
 
 query queryName2 {
   allFruit {

@@ -9,6 +9,7 @@ describe('parser', function() {
     expect(parser.parseForESLint).to.be.a('function');
   });
 
+  // TODO: does eslint let us inform it of where in the file the error may have occured while parsing?
   it('provides a good error if graphql could not parse', function() {
     expect(() => {
       parser.parseForESLint('');
@@ -50,6 +51,55 @@ describe('parser', function() {
   it('produces reasonable output', function() {
     // we will rely on other more unit tests, or integration tests to ensure the actual complexity is tests
     const result = parser.parseForESLint('fragment apple on Fruit { id }', { filePath: 'some-file.graphql' });
-    expect(result).to.have.keys(['ast', 'scopeManager', 'visitorKeys']);
+    expect(result).to.have.keys(['ast', 'scopeManager', 'visitorKeys', 'services']);
+  });
+
+  describe('parser services', function() {
+    it('has a functioning parse method', function() {
+      const source = `
+query {
+  id
+}
+      `;
+      const result = parser.parseForESLint(source);
+      expect(result.services.parse(source)).to.deep.eql(result.ast)
+    });
+
+    it('has a functioning correspondingNode method', function() {
+      const result = parser.parseForESLint(`
+query {
+  id
+}
+`);
+
+      const eslintNode = result.ast;
+      expect(eslintNode).to.be.an('object');
+      const gqlNode = result.services.correspondingNode(eslintNode);
+      expect(eslintNode).to.not.eql(gqlNode);
+
+      expect(result.services.correspondingNode(eslintNode)).to.eql(gqlNode);
+      expect(result.services.correspondingNode(gqlNode)).to.eql(eslintNode);
+    });
+
+    it('has a functioning getFragmentDefinitionsFromSource method', function() {
+      const result = parser.parseForESLint(`
+query {
+  id
+}
+`);
+
+      expect(result.services.getFragmentDefinitionsFromSource(`
+fragment Foo on Object {
+  id
+  name
+}
+fragment Bar on Object {
+  id
+}
+    `).map(node => ({ type: node.type, name: node.name.value}))).to.deep.eql([
+      { type: 'FragmentDefinition', name: 'Foo' },
+      { type: 'FragmentDefinition', name: 'Bar' }
+    ])
+    })
   });
 });
