@@ -4,7 +4,7 @@
     "lint": "eslint ."
   },
   "dependencies": {
-    "@eslint-ast/eslint-plugin-example": "link:../eslint",
+    "@eslint-ast/eslint-plugin-python": "link:../eslint",
     "eslint": "^7.6.0"
   }
 }

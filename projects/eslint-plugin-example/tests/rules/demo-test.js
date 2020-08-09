@@ -10,7 +10,7 @@ describe('example/demo-rule', function() {
   it('works', function(){
     tester.run(
       'example/demo-rule',
-      require('eslint-plugin-graphql/rules/demo'),
+      require('../../eslint/rules/demo'),
       {
         valid: [
 

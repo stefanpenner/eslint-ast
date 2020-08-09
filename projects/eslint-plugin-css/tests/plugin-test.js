@@ -5,7 +5,7 @@ describe('graphql-eslint plugin', function() {
   const plugin = require('../eslint/');
 
   it('has expected rules', function() {
-    expect(plugin.rules['example-rule']).to.be.a('object');
+    expect(plugin.rules['demo']).to.be.a('object');
   });
 
   it('has the expected members', function() {
