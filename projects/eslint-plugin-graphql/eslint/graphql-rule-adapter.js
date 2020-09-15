@@ -78,9 +78,9 @@ module.exports = function adapt(rule) {
                    // graphql visitor
             return rules[ruleName](
               /* node        */ context.parserServices.correspondingNode(node),
-              /* TODO: key   */ undefined,
+              /* TODO: key (Not currently used by validations) */ undefined,
               /* parent      */ context.parserServices.correspondingNode(node.parent),
-              /* TODO: path  */ undefined,
+              /* TODO: path (Not currently used by validations) */ undefined,
               /* ancestors   */ ancestors(node).map(ancestor => context.parserServices.correspondingNode(ancestor))
             );
           }
