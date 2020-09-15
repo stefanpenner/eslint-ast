@@ -1,7 +1,7 @@
 'use strict';
 
 const csstree = require('css-tree');
-function parse(code, options) {
+function parse(code, options = { }) {
   return JSON.parse(JSON.stringify(csstree.parse(code, {
     positions: true,
     filename: options.filename
