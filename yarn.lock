@@ -1050,7 +1050,8 @@ escape-string-regexp@1.0.5, escape-string-regexp@^1.0.5:
   version "1.0.0"
 
 "eslint-plugin-graphql@link:./projects/eslint-plugin-example/eslint":
-  version "1.0.0"
+  version "0.0.0"
+  uid ""
 
 eslint-scope@^5.1.0:
   version "5.1.0"

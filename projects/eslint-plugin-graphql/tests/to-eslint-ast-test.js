@@ -18,13 +18,15 @@ describe('eslint friendly AST', function() {
     }
 
     {
-      const source = `
+      const source =`
 type Apple {
   id: String
 }
+
 type Query {
   Apples: [Apple]
-}`;
+}     `;
+
       const graphql = parse(source);
       const eslint = toEslintAST(graphql, source);
       expect(graphql).to.not.eql(eslint);
@@ -284,6 +286,7 @@ query { # two
       range: [0, 50]
     })
   });
+
   it('converts schema', function() {
     const source = `
 type Apple {
@@ -291,8 +294,7 @@ type Apple {
 }
 type Query {
   Apples: [Apple]
-}
-`;
+}   `;
     const graphql = parse(source)
     const document = toEslintAST(graphql, source);
     const definitions = document.definitions;
@@ -302,10 +304,10 @@ type Query {
     expect(document).to.deep.eql({
       type: 'Document',
       loc: {
-        end: {line: 8, column: 1},
-        start: {line: 0, column: 0},
+        start: { line: 0, column: 0 },
+        end: { line: 7, column: 5 },
       },
-      range: [ 0, 62 ],
+      range: [ 0, 64 ],
       comments: [],
       tokens: [],
     })

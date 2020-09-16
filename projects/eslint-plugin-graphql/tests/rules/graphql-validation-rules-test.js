@@ -60,8 +60,7 @@ tester.run('UniqueOperationNamesRule', plugin.rules.UniqueOperationNamesRule, {
     `
 query { id }
 query a { id }
-query b { id }
-`
+query b { id }`
   ],
   invalid: [
     {
@@ -91,8 +90,8 @@ tester.run('LoneAnonymousOperationRule', plugin.rules.LoneAnonymousOperationRule
     {
       code: `
 query { id }
-query { id }
-`,
+query { id }`
+      ,
       errors: [
         {
           message: 'This anonymous operation must be the only defined operation.',
@@ -152,8 +151,7 @@ query Foo(
 }
 fragment FruitFields on Fruit {
   name
-}
-`,
+}`,
     }
   ],
   invalid: [
@@ -167,8 +165,7 @@ query Foo($var: JumbledUpLetters) {
 }
 fragment FruitFields on Fruiiiit {
   name
-}
-      `,
+}`,
       errors: [
         {
           type: 'NamedType',
@@ -178,7 +175,7 @@ fragment FruitFields on Fruiiiit {
           endLine: 5,
           line: 5,
         },
-{
+        {
           type: 'NamedType',
           message: 'Unknown type "Fruiiiit". Did you mean "Fruit"?',
           column: 26,
@@ -200,8 +197,7 @@ fragment validFragment on Pet {
   ... {
     name
   }
-}
-`,
+}`,
     }
   ],
   invalid: [
@@ -209,8 +205,7 @@ fragment validFragment on Pet {
       code: `
 fragment scalarFragment on Boolean {
   bad
-}
-      `,
+}`,
       errors: [
         {
           type: 'NamedType',
@@ -231,8 +226,7 @@ tester.run('VariablesAreInputTypesRule', plugin.rules.VariablesAreInputTypesRule
       code: `
 query Foo($a: String, $b: [Boolean!]!, $c: ComplexInput) {
   field(a: $a, b: $b, c: $c)
-}
-      `,
+}`,
     }
   ],
   invalid: [
@@ -240,8 +234,7 @@ query Foo($a: String, $b: [Boolean!]!, $c: ComplexInput) {
       code: `
 query Foo($a: Dog, $b: [[CatOrDog!]]!, $c: Pet) {
   field(a: $a, b: $b, c: $c)
-}
-      `,
+}`,
       errors: [
         {
           message: 'Variable "$a" cannot be non-input type "Dog".',
@@ -278,8 +271,7 @@ tester.run('ScalarLeafsRule', plugin.rules.ScalarLeafsRule, {
       code: `
 fragment scalarSelection on Dog {
   barks
-}
-      `,
+}`,
     }
   ],
   invalid: [
@@ -306,8 +298,7 @@ tester.run('FieldsOnCorrectTypeRule', plugin.rules.FieldsOnCorrectTypeRule, {
 fragment objectFieldSelection on Dog {
   __typename
   name
-}
-      `,
+}`,
     }
   ],
   invalid: [
@@ -315,8 +306,7 @@ fragment objectFieldSelection on Dog {
       code: `
 fragment fieldNotDefined on Dog {
   meowVolume
-}
-      `,
+}`,
       errors: [
         {
           type: 'Field',
@@ -337,8 +327,7 @@ tester.run('UniqueFragmentNamesRule', plugin.rules.UniqueFragmentNamesRule, {
       code: `
 fragment  a on Dog {
   name
-}
-      `,
+}`,
     }
   ],
   invalid: [
@@ -350,8 +339,7 @@ fragment A on Dog {
 
 fragment A on Dog {
   name
-}
-      `,
+}`,
       errors: [
         {
           type: 'Name',
@@ -375,8 +363,7 @@ fragment A on Dog {
 }
 query {
   a
-}
-      `,
+}`,
     }
   ],
   invalid: [
@@ -411,8 +398,7 @@ fragment A on Dog {
 }
 query {
   ...A
-}
-      `,
+}`,
     }
   ],
   invalid: [
@@ -442,8 +428,7 @@ tester.run('PossibleFragmentSpreadsRule', plugin.rules.PossibleFragmentSpreadsRu
       code: `
 fragment  A on Dog{
   ... on Dog { barkVolume }
-}
-      `,
+}`,
     }
   ],
   invalid: [
@@ -476,8 +461,7 @@ fragment A on Dog {
 }
 fragment B on Dog {
   barkVolume
-}
-      `,
+}`,
     }
   ],
   invalid: [
@@ -491,8 +475,7 @@ fragment B on Dog {
 }
 fragment C on Dog {
   ...A
-}
-      `,
+}`,
       errors: [
         {
           type: 'FragmentSpread',
@@ -513,8 +496,7 @@ tester.run('UniqueVariableNamesRule', plugin.rules.UniqueVariableNamesRule, {
       code: `
 query Foo($a: String, $b: String) {
   field(a: $a, b: $b)
-}
-      `,
+}`,
     }
   ],
   invalid: [
@@ -522,8 +504,7 @@ query Foo($a: String, $b: String) {
       code: `
 query Foo($a: String, $a: String) {
   field(a: $a)
-}
-      `,
+}`,
       errors: [
         {
           type: 'Name',
@@ -544,8 +525,7 @@ tester.run('NoUndefinedVariablesRule', plugin.rules.NoUndefinedVariablesRule, {
       code: `
 query Foo($a: String) {
   field(a: $a)
-}
-      `,
+}`,
     }
   ],
   invalid: [
@@ -553,8 +533,7 @@ query Foo($a: String) {
       code: `
 {
   field(a: $a)
-}
-      `,
+}`,
       errors: [
         {
           type: 'Variable',
@@ -575,8 +554,7 @@ tester.run('NoUnusedVariablesRule', plugin.rules.NoUnusedVariablesRule, {
       code: `
 query Foo($a: String) {
   field(a: $a)
-}
-      `,
+}`,
     }
   ],
   invalid: [
@@ -584,8 +562,7 @@ query Foo($a: String) {
       code: `
 query Foo($a: String, $b: String) {
   field(a: $a)
-}
-      `,
+}`,
       errors: [
         {
           type: 'VariableDefinition',
@@ -611,25 +588,23 @@ tester.run('KnownDirectivesRule', plugin.rules.KnownDirectivesRule, {
   human @skip(if: false) {
     name
   }
-}
-      `,
+}`,
     }
   ],
   invalid: [
     {
       code: `
- {
-   dog @unknown(directive: "value") {
-     name
-   }
- }
-      `,
+{
+  dog @unknown(directive: "value") {
+    name
+  }
+}`,
       errors: [
         {
           type: 'Directive',
           message: 'Unknown directive "@unknown".',
-          column: 9,
-          endColumn: 36,
+          column: 8,
+          endColumn: 35,
           endLine: 3,
           line: 3,
         },
@@ -646,8 +621,7 @@ tester.run('UniqueDirectivesPerLocationRule', plugin.rules.UniqueDirectivesPerLo
   dog @include(if: true) {
     name
   }
-}
-      `,
+}`,
     }
   ],
   invalid: [
@@ -657,8 +631,7 @@ tester.run('UniqueDirectivesPerLocationRule', plugin.rules.UniqueDirectivesPerLo
   dog @include(if: true) @include(if: true) {
     name @directive @directive
   }
-}
-      `,
+}`,
       errors: [
         {
           message: 'The directive "@include" can only be used once at this location.'
@@ -674,8 +647,7 @@ tester.run('KnownArgumentNamesRule', plugin.rules.KnownArgumentNamesRule, {
       code: `
 {
   dog @onField
-}
-      `,
+}`,
     }
   ],
   invalid: [
@@ -683,8 +655,7 @@ tester.run('KnownArgumentNamesRule', plugin.rules.KnownArgumentNamesRule, {
       code: `
 {
   dog @onField(if: true)
-}
-      `,
+}`,
       errors: [
         {
           message: 'Unknown argument "if" on directive "@onField".',
@@ -713,8 +684,7 @@ tester.run('UniqueArgumentNamesRule', plugin.rules.UniqueArgumentNamesRule, {
       code: `
 {
   dog @skip(if: true)
-}
-      `,
+}`,
     }
   ],
   invalid: [
@@ -722,8 +692,7 @@ tester.run('UniqueArgumentNamesRule', plugin.rules.UniqueArgumentNamesRule, {
       code: `
 {
   dog @skip(if: true, if: false)
-}
-      `,
+}`,
       errors: [
         {
           message: 'There can be only one argument named "if".',
@@ -745,8 +714,7 @@ tester.run('ValuesOfCorrectTypeRule', plugin.rules.ValuesOfCorrectTypeRule, {
       code: `
 {
   dog @skip(if: true)
-}
-      `,
+}`,
     }
   ],
   invalid: [
@@ -754,8 +722,7 @@ tester.run('ValuesOfCorrectTypeRule', plugin.rules.ValuesOfCorrectTypeRule, {
       code: `
 {
   dog @skip(if: 1.0)
-}
-      `,
+}`,
       errors: [
         {
           message: 'Boolean cannot represent a non boolean value: 1.0',
@@ -777,8 +744,7 @@ tester.run('ProvidedRequiredArgumentsRule', plugin.rules.ProvidedRequiredArgumen
       code: `
 {
   dog @skip(if: true)
-}
-      `,
+}`,
     }
   ],
   invalid: [
@@ -786,8 +752,7 @@ tester.run('ProvidedRequiredArgumentsRule', plugin.rules.ProvidedRequiredArgumen
       code: `
 {
   dog @skip
-}
-      `,
+}`,
       errors: [
         {
           message: 'Directive "@skip" argument "if" of type "Boolean!" is required, but it was not provided.',
@@ -815,8 +780,7 @@ query Query($intArg: Int!) {
   complicatedArgs {
     ...Fragment
   }
-}
-      `,
+}`,
     }
   ],
   invalid: [
@@ -830,8 +794,7 @@ query Query($intArg: Int) {
   complicatedArgs {
     ...Fragment
   }
-}
-    `,
+}`,
       errors: [
         {
           message: 'Variable "$intArg" of type "Int" used in position expecting type "Int!".',
@@ -854,8 +817,7 @@ tester.run('OverlappingFieldsCanBeMergedRule', plugin.rules.OverlappingFieldsCan
 fragment Fragment on Dog {
   nom: name
   nom: name
-}
-      `,
+}`,
     }
   ],
   invalid: [
@@ -864,8 +826,7 @@ fragment Fragment on Dog {
 fragment Fragment on Dog {
   nom: name
   nom: nickname
-}
-      `,
+}`,
       errors: [
         {
           message: 'Fields "nom" conflict because "name" and "nickname" are different fields. Use different aliases on the fields to fetch both if this was intentional.',
@@ -887,8 +848,7 @@ tester.run('UniqueInputFieldNamesRule', plugin.rules.UniqueInputFieldNamesRule, 
       code: `
 {
   field(arg: { f1: "value", f2: "value" })
-}
-      `,
+}`,
     }
   ],
   invalid: [
@@ -896,8 +856,7 @@ tester.run('UniqueInputFieldNamesRule', plugin.rules.UniqueInputFieldNamesRule, 
       code: `
 {
   field(arg: { f1: "value", f1: "value" })
-}
-      `,
+}`,
       errors: [
         {
           message: 'There can be only one input field named "f1".',
