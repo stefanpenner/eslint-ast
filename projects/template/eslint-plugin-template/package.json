@@ -1,0 +1,22 @@
+{
+  "name": "@eslint-ast/eslint-plugin-template",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+  },
+  "devDependencies": {
+    "eslint-plugin-graphql": "link:./eslint/",
+    "chai": "^4.2.0",
+    "mocha": "^8.1.0",
+    "eslint": "^7.5.0"
+  },
+  "scripts": {
+    "example": "eslint .",
+    "example:lint": "eslint example",
+    "example:lint:debug": "node debug ./node_modules/.bin/eslint example",
+    "test": "mocha tests/*-test.js tests/**/*-test.js",
+    "test:debug": "mocha --inspect-brk tests/*-test.js tests/**/*-test.js"
+  }
+
+}
