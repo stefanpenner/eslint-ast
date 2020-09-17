@@ -30,12 +30,8 @@ module.exports.parseForESLint = function (code, options = {}) {
     if (path.isAbsolute(options.schema)) {
       schemaString = fs.readFileSync(options.schema, 'UTF8');
     } else {
-      // otherwise resolve, that enables us to resolve relative the path of the file
-      schemaString = fs.readFileSync(
-        resolve(options.schema, {
-          basedir: path.dirname(options.filePath),
-        }),
-        'UTF8'
+      throw new Error(
+        `options.schema in your .eslintrc must be an absolute path; did you mean '\${__dirname}/${options.schema}'`
       );
     }
 

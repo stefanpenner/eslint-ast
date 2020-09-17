@@ -2,15 +2,15 @@
 
 const { expect } = require('chai');
 
-describe('parser', function() {
+describe('parser', function () {
   const parser = require('./../parser');
 
-  it('looks about right', function() {
+  it('looks about right', function () {
     expect(parser.parseForESLint).to.be.a('function');
   });
 
   // TODO: does eslint let us inform it of where in the file the error may have occured while parsing?
-  it('provides a good error if graphql could not parse', function() {
+  it('provides a good error if graphql could not parse', function () {
     expect(() => {
       parser.parseForESLint('');
     }).to.throw(/^Syntax Error: Unexpected <EOF>./);
@@ -50,7 +50,23 @@ describe('parser', function() {
     }).to.throw(/File Contents:\n random content{\n$/);
   });
 
-  it('produces reasonable output', function() {
+  it('throws a useful error if options.schema cannot be found', function () {
+    expect(() => {
+      parser.parseForESLint('query { foo { __typename } }', {
+        schema: '/probably/not/a/real/path.graphql',
+      });
+    }).to.throw(/ENOENT.*not\/a\/real\/path.graphql/);
+  });
+
+  it('throws a useful error if options.schema is relative', function () {
+    expect(() => {
+      parser.parseForESLint('query { foo { __typename } }', {
+        schema: './no/such/path.graphql',
+      });
+    }).to.throw(/must be an absolute path.*__dirname/i);
+  });
+
+  it('produces reasonable output', function () {
     // we will rely on other more unit tests, or integration tests to ensure the actual complexity is tests
     const result = parser.parseForESLint('fragment apple on Fruit { id }', {
       filePath: 'some-file.graphql',
@@ -58,8 +74,8 @@ describe('parser', function() {
     expect(result).to.have.keys(['ast', 'scopeManager', 'visitorKeys', 'services']);
   });
 
-  describe('parser services', function() {
-    it('has a functioning parse method', function() {
+  describe('parser services', function () {
+    it('has a functioning parse method', function () {
       const source = `
 query {
   id
@@ -69,7 +85,7 @@ query {
       expect(result.services.parse(source)).to.deep.eql(result.ast);
     });
 
-    it('has a functioning correspondingNode method', function() {
+    it('has a functioning correspondingNode method', function () {
       const result = parser.parseForESLint(`
 query {
   id
@@ -85,7 +101,7 @@ query {
       expect(result.services.correspondingNode(gqlNode)).to.eql(eslintNode);
     });
 
-    it('has a functioning getFragmentDefinitionsFromSource method', function() {
+    it('has a functioning getFragmentDefinitionsFromSource method', function () {
       const result = parser.parseForESLint(`
 query {
   id
