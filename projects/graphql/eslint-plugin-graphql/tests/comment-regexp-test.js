@@ -3,8 +3,8 @@
 const { expect } = require('chai');
 const commentMatcher = require('../lib/maybe-comment');
 
-describe('comment-matcher', function() {
-  it('works', function() {
+describe('comment-matcher', function () {
+  it('works', function () {
     expect(commentMatcher('')).to.eql(null);
     expect(commentMatcher('a')).to.eql(null);
     expect(commentMatcher('a#')).to.eql(null);

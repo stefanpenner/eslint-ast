@@ -57,13 +57,13 @@ module.exports = function adapt(rule) {
             ...error,
             node,
           });
-        }
+        },
       );
       const rules = rule(validationContext);
 
       const callbacks = { enter() {}, exit() {} };
 
-      wrappedRules['*'] = function(node) {
+      wrappedRules['*'] = function (node) {
         typeInfo.enter(context.parserServices.correspondingNode(node));
         callbacks.enter(node);
         callbacks.exit(node);
@@ -74,7 +74,7 @@ module.exports = function adapt(rule) {
         const type = typeof rule;
         if (type === 'function') {
           // eslint visitor
-          const callback = function(node) {
+          const callback = function (node) {
             // graphql visitor
             return rules[ruleName](
               /* node        */ context.parserServices.correspondingNode(node),
@@ -82,8 +82,8 @@ module.exports = function adapt(rule) {
               /* parent      */ context.parserServices.correspondingNode(node.parent),
               /* TODO: path (Not currently used by validations) */ undefined,
               /* ancestors   */ ancestors(node).map(ancestor =>
-                context.parserServices.correspondingNode(ancestor)
-              )
+                context.parserServices.correspondingNode(ancestor),
+              ),
             );
           };
 
@@ -101,7 +101,7 @@ module.exports = function adapt(rule) {
           if (typeof rule.enter === 'function') {
             hadVisitor = true;
             // eslint visitor
-            wrappedRules[ruleName] = function(node) {
+            wrappedRules[ruleName] = function (node) {
               // graphql visitor
               return rule.enter(
                 /* node       */ context.parserServices.correspondingNode(node),
@@ -109,8 +109,8 @@ module.exports = function adapt(rule) {
                 /* parent     */ context.parserServices.correspondingNode(node.parent),
                 /* TODO: path (Not currently used by validations) */ undefined,
                 /* ancestors  */ ancestors(node).map(ancestor =>
-                  context.parserServices.correspondingNode(ancestor)
-                )
+                  context.parserServices.correspondingNode(ancestor),
+                ),
               );
             };
           }
@@ -118,7 +118,7 @@ module.exports = function adapt(rule) {
           if (typeof rule.leave === 'function') {
             hadVisitor = true;
             // eslint visitor
-            wrappedRules[ruleName + ':exit'] = function(node) {
+            wrappedRules[ruleName + ':exit'] = function (node) {
               // graphql visitor
               return rule.leave(
                 /* node       */ context.parserServices.correspondingNode(node),
@@ -126,8 +126,8 @@ module.exports = function adapt(rule) {
                 /* parent     */ context.parserServices.correspondingNode(node.parent),
                 /* TODO: path (Not currently used by validations) */ undefined,
                 /* ancestors  */ ancestors(node).map(ancestor =>
-                  context.parserServices.correspondingNode(ancestor)
-                )
+                  context.parserServices.correspondingNode(ancestor),
+                ),
               );
             };
           }

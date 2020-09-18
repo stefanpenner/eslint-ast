@@ -4,6 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "dependencies": {
+    "eslint": "^7.9.0",
     "graphql": "^15.3.0",
     "mocha": "^8.1.0",
     "resolve": "^1.17.0"
@@ -12,6 +13,9 @@
     "chai": "^4.2.0",
     "eslint": "^7.5.0",
     "fixturify-project": "^2.1.0"
+  },
+  "engines": {
+    "node": "10.* || >= 12"
   },
   "files": [
     "rules/",
@@ -25,6 +29,7 @@
     "example:lint": "eslint example",
     "example:lint:debug": "node debug ./node_modules/.bin/eslint example",
     "test": "mocha tests/*-test.js tests/**/*-test.js",
-    "test:debug": "mocha --inspect-brk tests/*-test.js tests/**/*-test.js"
+    "test:debug": "mocha --inspect-brk tests/*-test.js tests/**/*-test.js",
+    "lint": "eslint ."
   }
 }

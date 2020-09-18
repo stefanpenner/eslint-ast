@@ -3,8 +3,8 @@
 const { expect } = require('chai');
 const commentToEsNode = require('../lib/comment-to-es-node');
 
-describe('building comment node from line', function() {
-  it('works', function() {
+describe('building comment node from line', function () {
+  it('works', function () {
     expect(commentToEsNode('', { index: 0, line: 0 })).to.eql(null);
     expect(commentToEsNode('#', { index: 0, line: 0 })).to.eql(null);
     expect(commentToEsNode('#a', { index: 0, line: 0 })).to.eql({

@@ -1,6 +1,7 @@
 'use strict';
 
 const { parse, buildSchema } = require('graphql');
+// TODO: use graphql visitor instead
 const Traverser = require('eslint/lib/shared/traverser');
 const path = require('path');
 const fs = require('fs');
@@ -23,7 +24,6 @@ module.exports.parseForESLint = function (code, options = {}) {
 
   let schemaString;
   let schema;
-  let typeInfo;
 
   if (options.schema) {
     // if we are given an absolute path, automatically just read it
@@ -31,7 +31,7 @@ module.exports.parseForESLint = function (code, options = {}) {
       schemaString = fs.readFileSync(options.schema, 'UTF8');
     } else {
       throw new Error(
-        `options.schema in your .eslintrc must be an absolute path; did you mean '\${__dirname}/${options.schema}'`
+        `options.schema in your .eslintrc must be an absolute path; did you mean '\${__dirname}/${options.schema}'`,
       );
     }
 

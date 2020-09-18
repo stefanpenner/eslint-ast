@@ -1,15 +1,14 @@
 'use strict';
 
 const { expect } = require('chai');
+const parser = require('../parser');
 
 describe('parser', function () {
-  const parser = require('../parser');
-
   it('looks about right', function () {
     expect(parser.parseForESLint).to.be.a('function');
   });
 
-  // TODO: does eslint let us inform it of where in the file the error may have occured while parsing?
+  // TODO: does eslint let us inform it of where in the file the error may have occurred while parsing?
   it('provides a good error if graphql could not parse', function () {
     expect(() => {
       parser.parseForESLint('');
@@ -119,9 +118,9 @@ fragment Foo on Object {
 fragment Bar on Object {
   id
 }
-    `
+    `,
           )
-          .map(node => ({ type: node.type, name: node.name.value }))
+          .map(node => ({ type: node.type, name: node.name.value })),
       ).to.deep.eql([
         { type: 'FragmentDefinition', name: 'Foo' },
         { type: 'FragmentDefinition', name: 'Bar' },

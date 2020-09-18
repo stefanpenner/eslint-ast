@@ -15,5 +15,3 @@ yarn add <project-name> --dev
 
 1. open `:CocConfig`
 2. add `'<type>'` to `'eslint.filetypes'`
-
-

@@ -19,12 +19,18 @@
     "example:lint": "eslint projects/*/example",
     "example:lint:debug": "node debug ./node_modules/.bin/eslint projects/*/example",
     "test": "mocha projects/*/eslint-plugin-*/tests/**/*-test.js",
-    "test:debug": "mocha --inspect-brk projects/*/eslint-plugin-*/tests/**/*-test.js"
+    "test:debug": "mocha --inspect-brk projects/*/eslint-plugin-*/tests/**/*-test.js",
+    "lint": "eslint ."
   },
   "dependencies": {},
   "devDependencies": {
     "chai": "^4.2.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-mocha": "^8.0.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^3.1.4",
     "mocha": "^8.1.0",
+    "prettier": "^2.1.2",
     "release-it": "^13.6.5",
     "release-it-lerna-changelog": "^2.3.0",
     "release-it-yarn-workspaces": "^1.4.0"

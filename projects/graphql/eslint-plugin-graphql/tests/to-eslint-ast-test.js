@@ -4,8 +4,8 @@ const { expect } = require('chai');
 const toEslintAST = require('../lib/to-eslint-ast');
 const { correspondingNode } = toEslintAST;
 
-describe('eslint friendly AST', function() {
-  it('allows lookup of corresponding node. To ease traversing one AST but having easy access to the original node, without polluting the AST', function() {
+describe('eslint friendly AST', function () {
+  it('allows lookup of corresponding node. To ease traversing one AST but having easy access to the original node, without polluting the AST', function () {
     {
       const source = `query { id }`;
       const graphql = parse(source);
@@ -40,7 +40,7 @@ type Query {
     }
   });
 
-  it('converts simple query', function() {
+  it('converts simple query', function () {
     const source = `query { id }`;
     const graphql = parse(source);
 
@@ -122,7 +122,7 @@ type Query {
     });
   });
 
-  it('converts simple query with comments', function() {
+  it('converts simple query with comments', function () {
     const source = `query { id } # hi`;
     const graphql = parse(source);
     const eslint = toEslintAST(graphql, source);
@@ -163,7 +163,7 @@ type Query {
     });
   });
 
-  it('converts with many comments', function() {
+  it('converts with many comments', function () {
     const source = `
 # one
 query { # two
@@ -271,7 +271,7 @@ query { # two
     });
   });
 
-  it('converts schema', function() {
+  it('converts schema', function () {
     const source = `
 type Apple {
   id: String
