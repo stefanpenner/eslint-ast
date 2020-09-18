@@ -1,12 +1,6 @@
 module.exports = {
   singleQuote: true,
-  trailingComma: 'es5',
+  trailingComma: 'all',
   arrowParens: 'avoid',
-  printWidth: 98,
-  overrides: [
-    {
-      files: ['**/*.hbs'],
-      options: { parser: 'glimmer' },
-    },
-  ],
+  printWidth: 100,
 };

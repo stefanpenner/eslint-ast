@@ -31,7 +31,7 @@ module.exports.parseForESLint = function (code, options = {}) {
       schemaString = fs.readFileSync(options.schema, 'UTF8');
     } else {
       throw new Error(
-        `options.schema in your .eslintrc must be an absolute path; did you mean '\${__dirname}/${options.schema}'`
+        `options.schema in your .eslintrc must be an absolute path; did you mean '\${__dirname}/${options.schema}'`,
       );
     }
 

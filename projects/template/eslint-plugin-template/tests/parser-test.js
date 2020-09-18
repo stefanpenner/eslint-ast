@@ -2,14 +2,14 @@
 
 const { expect } = require('chai');
 
-describe('parser', function() {
+describe('parser', function () {
   const parser = require('./../parser');
 
-  it('looks about right', function() {
+  it('looks about right', function () {
     expect(parser.parseForESLint).to.be.a('function');
   });
 
-  it.skip('provides a good error if extension could not parse', function() {
+  it.skip('provides a good error if extension could not parse', function () {
     expect(() => {
       parser.parseForESLint('');
     }).to.throw(/^Syntax Error: Unexpected <EOF>./);
@@ -49,7 +49,7 @@ describe('parser', function() {
     }).to.throw(/File Contents:\n random content{\n$/);
   });
 
-  it.skip('produces reasonable output', function() {
+  it.skip('produces reasonable output', function () {
     // we will rely on other more unit tests, or integration tests to ensure the actual complexity is tests
     const result = parser.parseForESLint('<example source>', {
       filePath: 'some-file.extension',

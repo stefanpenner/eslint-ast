@@ -119,9 +119,9 @@ fragment Foo on Object {
 fragment Bar on Object {
   id
 }
-    `
+    `,
           )
-          .map(node => ({ type: node.type, name: node.name.value }))
+          .map(node => ({ type: node.type, name: node.name.value })),
       ).to.deep.eql([
         { type: 'FragmentDefinition', name: 'Foo' },
         { type: 'FragmentDefinition', name: 'Bar' },

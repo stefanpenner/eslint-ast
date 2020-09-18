@@ -23,11 +23,9 @@ module.exports = {
       files: '**/*.graphql',
       parser: '@eslint-ast/eslint-plugin-graphql/parser',
       parserOptions: {
-        schema: `${__dirname}/path/to/schema.graphql`
+        schema: `${__dirname}/path/to/schema.graphql`,
       },
-      plugins: [
-        '@eslint-ast/eslint-plugin-graphql',
-      ],
+      plugins: ['@eslint-ast/eslint-plugin-graphql'],
       extends: require.resolve('@eslint-ast/eslint-plugin-graphql/recommended.js'),
     },
   ],
@@ -67,8 +65,9 @@ If you prefer, you can add this to your global coc config via `:CocConfig`.
 ## vscode users
 
 1. Install Extensions
-  - `GraphQL`
-  - `ESLint`
+
+- `GraphQL`
+- `ESLint`
 
 2. Enable linting on GraphQL in your `settings.json` and add `graphql` to the list of filetypes in `eslint.validate`
 
@@ -85,36 +84,36 @@ If you prefer, you can add this to your global coc config via `:CocConfig`.
 
 This project includes some of its own rules:
 
-* single-top-level-query
+- single-top-level-query
 
 This project supports and executes all of graphql's own validations as of version 15.3.0; they are:
 
-* ExecutableDefinitionsRule
-* UniqueOperationNamesRule
-* LoneAnonymousOperationRule
-* SingleFieldSubscriptionsRule
-* KnownTypeNamesRule
-* FragmentsOnCompositeTypesRule
-* VariablesAreInputTypesRule
-* ScalarLeafsRule
-* FieldsOnCorrectTypeRule
-* UniqueFragmentNamesRule
-* KnownFragmentNamesRule
-* NoUnusedFragmentsRule
-* PossibleFragmentSpreadsRule
-* NoFragmentCyclesRule
-* UniqueVariableNamesRule
-* NoUndefinedVariablesRule
-* NoUnusedVariablesRule
-* KnownDirectivesRule
-* UniqueDirectivesPerLocationRule
-* KnownArgumentNamesRule
-* UniqueArgumentNamesRule
-* ValuesOfCorrectTypeRule
-* ProvidedRequiredArgumentsRule
-* VariablesInAllowedPositionRule
-* OverlappingFieldsCanBeMergedRule
-* UniqueInputFieldNamesRule
+- ExecutableDefinitionsRule
+- UniqueOperationNamesRule
+- LoneAnonymousOperationRule
+- SingleFieldSubscriptionsRule
+- KnownTypeNamesRule
+- FragmentsOnCompositeTypesRule
+- VariablesAreInputTypesRule
+- ScalarLeafsRule
+- FieldsOnCorrectTypeRule
+- UniqueFragmentNamesRule
+- KnownFragmentNamesRule
+- NoUnusedFragmentsRule
+- PossibleFragmentSpreadsRule
+- NoFragmentCyclesRule
+- UniqueVariableNamesRule
+- NoUndefinedVariablesRule
+- NoUnusedVariablesRule
+- KnownDirectivesRule
+- UniqueDirectivesPerLocationRule
+- KnownArgumentNamesRule
+- UniqueArgumentNamesRule
+- ValuesOfCorrectTypeRule
+- ProvidedRequiredArgumentsRule
+- VariablesInAllowedPositionRule
+- OverlappingFieldsCanBeMergedRule
+- UniqueInputFieldNamesRule
 
 ## Troubleshooting
 
@@ -128,7 +127,7 @@ If you see errors like
 ```
 
 You are likely parsing `.graphql` files as if they were JavaScript and need to
-set the `parser` option in your `.eslintrc`.  See the Usage section for
+set the `parser` option in your `.eslintrc`. See the Usage section for
 details.
 
 ### Strange Crashes
@@ -140,4 +139,4 @@ TypeError: Cannot read property 'internal' of null
 Occurred while linting /Users/me/src/project/query.graphql:0
 ```
 
-You may be on an older version of `eslint`.  `eslint@7.0.0` or higher is required.
+You may be on an older version of `eslint`. `eslint@7.0.0` or higher is required.

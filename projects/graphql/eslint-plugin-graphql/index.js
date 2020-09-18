@@ -68,7 +68,7 @@ module.exports = {
     schema: [], // no options
   },
 
-  create: function(context) {
+  create: function (context) {
     return {};
   },
 };

@@ -25,6 +25,7 @@
     "example:lint": "eslint example",
     "example:lint:debug": "node debug ./node_modules/.bin/eslint example",
     "test": "mocha tests/*-test.js tests/**/*-test.js",
-    "test:debug": "mocha --inspect-brk tests/*-test.js tests/**/*-test.js"
+    "test:debug": "mocha --inspect-brk tests/*-test.js tests/**/*-test.js",
+    "lint": "eslint ."
   }
 }

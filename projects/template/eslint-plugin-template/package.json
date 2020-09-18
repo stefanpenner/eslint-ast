@@ -3,8 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
-  "dependencies": {
-  },
+  "dependencies": {},
   "devDependencies": {
     "eslint-plugin-graphql": "link:./eslint/",
     "chai": "^4.2.0",
@@ -18,5 +17,4 @@
     "test": "mocha tests/*-test.js tests/**/*-test.js",
     "test:debug": "mocha --inspect-brk tests/*-test.js tests/**/*-test.js"
   }
-
 }

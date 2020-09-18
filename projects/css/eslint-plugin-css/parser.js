@@ -10,8 +10,8 @@ function parse(code, options = {}) {
 
         // filename: filename,
         // onParseError
-      })
-    )
+      }),
+    ),
   );
 }
 
@@ -22,7 +22,7 @@ function enter(node) {
   // transform a given node into an eslint compabible node
 }
 
-module.exports.parseForESLint = function(code, options) {
+module.exports.parseForESLint = function (code, options) {
   let ast;
 
   const filePath =

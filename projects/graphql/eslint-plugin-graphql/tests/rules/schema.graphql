@@ -118,4 +118,3 @@ directive @onFragmentDefinition on FRAGMENT_DEFINITION
 directive @onFragmentSpread on FRAGMENT_SPREAD
 directive @onInlineFragment on INLINE_FRAGMENT
 directive @onVariableDefinition on VARIABLE_DEFINITION
-

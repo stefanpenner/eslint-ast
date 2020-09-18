@@ -4,12 +4,12 @@ const { RuleTester } = require('eslint');
 
 // Make RuleTester work nicely with mocha
 // documented here: https://eslint.org/docs/developer-guide/nodejs-api#ruletester
-RuleTester.describe = function(text, method) {
+RuleTester.describe = function (text, method) {
   RuleTester.it.title = text;
   return describe(text, method);
 };
 
-RuleTester.it = function(text, method) {
+RuleTester.it = function (text, method) {
   it(RuleTester.it.title + ': ' + text, method);
 };
 

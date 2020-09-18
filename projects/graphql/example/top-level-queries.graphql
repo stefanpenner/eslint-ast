@@ -1,4 +1,4 @@
-fragment Apple on  User {
+fragment Apple on User {
   id
   name
   # eslint-disable-next-line
@@ -19,5 +19,3 @@ query queryName2 {
     orange
   }
 }
-
-
