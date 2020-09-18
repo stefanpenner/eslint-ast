@@ -1,8 +1,6 @@
 'use strict';
 
-const graphql = require('graphql');
 const { specifiedRules } = require('graphql/validation');
-
 const adapt = require('./lib/graphql-rule-adapter');
 const rules = {
   get 'single-top-level-query'() {
@@ -58,7 +56,7 @@ module.exports = {
     type: '',
 
     docs: {
-      description: 'disallow more then one query in a file',
+      description: 'graphql eslint support',
       category: '',
       recommended: true,
       url: '',
@@ -68,7 +66,7 @@ module.exports = {
     schema: [], // no options
   },
 
-  create: function (context) {
+  create: function (/* context */) {
     return {};
   },
 };

@@ -1,10 +1,9 @@
 'use strict';
 
 const { expect } = require('chai');
+const parser = require('./../parser');
 
 describe('parser', function () {
-  const parser = require('./../parser');
-
   it('looks about right', function () {
     expect(parser.parseForESLint).to.be.a('function');
   });

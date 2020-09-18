@@ -10,6 +10,9 @@
     "mocha": "^8.1.0",
     "eslint": "^7.5.0"
   },
+  "engines":  {
+    "node": "10.* || >= 12"
+  },
   "scripts": {
     "example": "eslint .",
     "example:lint": "eslint example",

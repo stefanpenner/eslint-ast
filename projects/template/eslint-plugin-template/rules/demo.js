@@ -8,7 +8,7 @@ module.exports = {
       category: 'problem',
     },
   },
-  create(context) {
+  create(/* context */) {
     return {
       /* declare visitor members */
     };

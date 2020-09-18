@@ -1,13 +1,15 @@
 'use strict';
 
-function parse(code, options) {
-  return {};
+function parse(/* code, options */) {
   // TODO: implement
+  return {};
 }
 
-function enter(node) {
-  // transform a given node into an eslint compabible node
+function enter(/* node */) {
+  // transform a given node into an eslint comparably node
 }
+
+function visit() {}
 
 module.exports.parseForESLint = function (code, options) {
   let ast;
@@ -30,9 +32,7 @@ module.exports.parseForESLint = function (code, options) {
     // TODO: actually implement when we need it
     scopeManager: {
       scopes: [{ set: new Map(), variables: [], through: [] }],
-      getDeclaredVariables() {
-        debugger;
-      },
+      getDeclaredVariables() {},
     },
     service: {},
     // to only visit certain members, feel free to add those rules to this dictionary.

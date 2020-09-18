@@ -43,9 +43,7 @@ module.exports.parseForESLint = function (code, options) {
     // TODO: actually implement when we need it
     scopeManager: {
       scopes: [{ set: new Map(), variables: [], through: [] }],
-      getDeclaredVariables() {
-        debugger;
-      },
+      getDeclaredVariables() {},
     },
     service: {},
     // to only visit certain members, feel free to add those rules to this dictionary.

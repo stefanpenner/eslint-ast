@@ -1,6 +1,7 @@
 'use strict';
 
 const { parse, buildSchema } = require('graphql');
+// TODO: use graphql visitor instead
 const Traverser = require('eslint/lib/shared/traverser');
 const path = require('path');
 const fs = require('fs');
@@ -23,7 +24,6 @@ module.exports.parseForESLint = function (code, options = {}) {
 
   let schemaString;
   let schema;
-  let typeInfo;
 
   if (options.schema) {
     // if we are given an absolute path, automatically just read it

@@ -1,9 +1,8 @@
 'use strict';
 const { expect } = require('chai');
+const plugin = require('../');
 
 describe('graphql-eslint plugin', function () {
-  const plugin = require('../');
-
   it('has expected rules', function () {
     expect(plugin.rules['demo']).to.be.a('object');
   });
