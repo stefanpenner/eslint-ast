@@ -3,7 +3,7 @@
 Mono-repo for various eslint custom language parsers / rules etc.
 
 Ready to use:
-- TODO
+- [@eslint-ast/eslint-plugin-graphql](./projects/graphql/eslint-plugin-graphql)
 
 Experimental WIP:
-- TODO
+- [@eslint-ast/eslint-plugin-css](./projects/css/eslint-plugin-css)
