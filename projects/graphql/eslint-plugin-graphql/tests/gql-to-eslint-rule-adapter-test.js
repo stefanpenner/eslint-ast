@@ -1,5 +1,5 @@
 const { specifiedRules } = require('graphql/validation');
-const adapt = require('../graphql-rule-adapter');
+const adapt = require('../lib/graphql-rule-adapter');
 const tester = require('./rules/rule-tester');
 const adaptedRule = adapt(specifiedRules[0]);
 

@@ -1,7 +1,7 @@
 'use strict';
 
 const { expect } = require('chai');
-const commentMatcher = require('../comment-regexp');
+const commentMatcher = require('../lib/maybe-comment');
 
 describe('comment-matcher', function() {
   it('works', function() {

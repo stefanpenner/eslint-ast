@@ -1,7 +1,7 @@
 'use strict';
 const COMMENT_REGEXP = Object.freeze(/#(.+)(:?\r\n|\n)?$/);
 
-module.exports = function(line) {
+module.exports = function maybeComment(line) {
   const match = line.match(COMMENT_REGEXP);
   if (!Array.isArray(match)) {
     return null;

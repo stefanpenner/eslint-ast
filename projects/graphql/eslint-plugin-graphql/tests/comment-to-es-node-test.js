@@ -1,7 +1,7 @@
 'use strict';
 
 const { expect } = require('chai');
-const commentToEsNode = require('../comment-to-es-node');
+const commentToEsNode = require('../lib/comment-to-es-node');
 
 describe('building comment node from line', function() {
   it('works', function() {
