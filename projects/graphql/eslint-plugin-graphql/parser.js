@@ -1,14 +1,12 @@
 'use strict';
 
-const { parse, buildSchema } = require('graphql');
-// TODO: use graphql visitor instead
-const Traverser = require('eslint/lib/shared/traverser');
 const path = require('path');
 const fs = require('fs');
 
-const toEslintAST = require('./lib/to-eslint-ast');
-
+const { parse, buildSchema, visit } = require('graphql');
 const visitorKeys = require('graphql/language/visitor').QueryDocumentKeys;
+
+const toEslintAST = require('./lib/to-eslint-ast');
 
 module.exports.parseForESLint = function (code, options = {}) {
   let graphqlAST;
@@ -60,8 +58,7 @@ module.exports.parseForESLint = function (code, options = {}) {
         return this.correspondingNode(ast);
       },
       parse(source) {
-        // TODO:parse with options?
-        return toEslintAST(parse(source), source);
+        return toEslintAST(parse(source, options), source);
       },
 
       // a way to move between a Node in ESLint AST, and its corresponding graphql AST and back
@@ -79,18 +76,22 @@ module.exports.parseForESLint = function (code, options = {}) {
         // TODO: debug this, and decide on the appropriate solution
       },
 
+      visit(ast, visitor) {
+        if (typeof ast === 'string') {
+          ast = parse(ast, options);
+        }
+        visit(ast, visitor, visitorKeys);
+      },
+
+      toEslintAST(ast) {
+        return toEslintAST(ast);
+      },
+
       getFragmentDefinitionsFromSource(source) {
         const fragmentDefinitions = [];
-        const ast = this.parse(source);
-
-        // TODO: might be fun to provide a `visit` helper, with 100% same experience as the eslint one.
-        const traverser = new Traverser();
-        traverser.traverse(ast, {
-          visitorKeys,
-          enter(node) {
-            if (node.type === 'FragmentDefinition') {
-              fragmentDefinitions.push(node);
-            }
+        visit(parse(source), {
+          FragmentDefinition(node) {
+            fragmentDefinitions.push(toEslintAST(node));
           },
         });
 
