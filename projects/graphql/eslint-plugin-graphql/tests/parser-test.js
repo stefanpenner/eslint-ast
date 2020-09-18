@@ -107,24 +107,57 @@ query {
 }
 `);
 
-      expect(
-        result.services
-          .getFragmentDefinitionsFromSource(
-            `
+      const source = `
 fragment Foo on Object {
   id
   name
 }
 fragment Bar on Object {
   id
-}
-    `,
-          )
+}`;
+      expect(
+        result.services
+          .getFragmentDefinitionsFromSource(source)
           .map(node => ({ type: node.type, name: node.name.value })),
       ).to.deep.eql([
         { type: 'FragmentDefinition', name: 'Foo' },
         { type: 'FragmentDefinition', name: 'Bar' },
       ]);
+
+      const fragments = result.services.getFragmentDefinitionsFromSource(source);
+      const eslintNode = fragments[0];
+      const gqlNode = result.services.correspondingNode(eslintNode);
+
+      expect(eslintNode).to.have.property('type', 'FragmentDefinition');
+
+      expect(gqlNode).to.have.property('kind', 'FragmentDefinition');
+
+      expect(gqlNode).to.not.eql(eslintNode);
     });
+  });
+  it('has a functioning visit method', function () {
+    const result = parser.parseForESLint(`
+query {
+  id
+}`);
+
+    const source = `
+fragment Foo on Object {
+  id
+  name
+}
+fragment Bar on Object {
+  id
+}`;
+    const fragments = [];
+    result.services.visit(source, {
+      FragmentDefinition(node) {
+        fragments.push(node);
+      },
+    });
+
+    expect(fragments.length).to.eql(2);
+    expect(fragments[0].kind).to.eql('FragmentDefinition');
+    expect(fragments[1].kind).to.eql('FragmentDefinition');
   });
 });
