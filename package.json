@@ -7,14 +7,19 @@
   "author": "Stefan Penner <stefan.penner@gmail.com>",
   "main": "index.js",
   "workspaces": [
-    "projects/*"
+    "projects/css/eslint-plugin-css",
+    "projects/css/example",
+    "projects/graphql/eslint-plugin-graphql",
+    "projects/graphql/example",
+    "projects/template/eslint-plugin-template",
+    "projects/template/example"
   ],
   "scripts": {
     "example": "eslint .",
     "example:lint": "eslint projects/*/example",
     "example:lint:debug": "node debug ./node_modules/.bin/eslint projects/*/example",
-    "test": "mocha projects/*/tests/**/*-test.js",
-    "test:debug": "mocha --inspect-brk projects/*/tests/**/*-test.js"
+    "test": "mocha projects/*/eslint-plugin-*/tests/**/*-test.js",
+    "test:debug": "mocha --inspect-brk projects/*/eslint-plugin-*/tests/**/*-test.js"
   },
   "dependencies": {},
   "devDependencies": {
