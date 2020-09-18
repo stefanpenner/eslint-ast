@@ -13,6 +13,13 @@
     "eslint": "^7.5.0",
     "fixturify-project": "^2.1.0"
   },
+  "files": [
+    "rules/",
+    "lib/",
+    "index.js",
+    "parser.js",
+    "recommended.js"
+  ],
   "scripts": {
     "example": "eslint .",
     "example:lint": "eslint example",

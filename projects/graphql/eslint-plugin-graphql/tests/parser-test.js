@@ -3,7 +3,7 @@
 const { expect } = require('chai');
 
 describe('parser', function () {
-  const parser = require('./../parser');
+  const parser = require('../parser');
 
   it('looks about right', function () {
     expect(parser.parseForESLint).to.be.a('function');

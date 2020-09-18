@@ -1,7 +1,7 @@
 const { parse } = require('graphql');
 const { expect } = require('chai');
 
-const toEslintAST = require('../to-eslint-ast');
+const toEslintAST = require('../lib/to-eslint-ast');
 const { correspondingNode } = toEslintAST;
 
 describe('eslint friendly AST', function() {
@@ -25,7 +25,7 @@ type Apple {
 
 type Query {
   Apples: [Apple]
-}     `;
+}`;
 
       const graphql = parse(source);
       const eslint = toEslintAST(graphql, source);
@@ -170,8 +170,8 @@ query { # two
   id # three
 } # four
 # #five`;
-    const graphql = parse(source);
 
+    const graphql = parse(source);
     const eslint = toEslintAST(graphql, source);
 
     delete eslint.definitions; // to make the diff easier
@@ -278,7 +278,8 @@ type Apple {
 }
 type Query {
   Apples: [Apple]
-}   `;
+}`;
+
     const graphql = parse(source);
     const document = toEslintAST(graphql, source);
     const definitions = document.definitions;
@@ -289,9 +290,9 @@ type Query {
       type: 'Document',
       loc: {
         start: { line: 0, column: 0 },
-        end: { line: 7, column: 5 },
+        end: { line: 7, column: 2 },
       },
-      range: [0, 64],
+      range: [0, 61],
       comments: [],
       tokens: [],
     });

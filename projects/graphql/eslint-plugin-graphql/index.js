@@ -3,7 +3,7 @@
 const graphql = require('graphql');
 const { specifiedRules } = require('graphql/validation');
 
-const adapt = require('./graphql-rule-adapter');
+const adapt = require('./lib/graphql-rule-adapter');
 const rules = {
   get 'single-top-level-query'() {
     return require('./rules/single-top-level-query');

@@ -1,8 +1,8 @@
 'use strict';
 
-const commentMatcher = require('./comment-regexp');
+const maybeComment = require('./maybe-comment');
 module.exports = function commentToEsNode(lineString, { index, line }) {
-  const matched = commentMatcher(lineString);
+  const matched = maybeComment(lineString);
   if (!matched) {
     return null;
   }

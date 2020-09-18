@@ -5,7 +5,7 @@ const Traverser = require('eslint/lib/shared/traverser');
 const path = require('path');
 const fs = require('fs');
 
-const toEslintAST = require('./to-eslint-ast');
+const toEslintAST = require('./lib/to-eslint-ast');
 
 const visitorKeys = require('graphql/language/visitor').QueryDocumentKeys;
 
