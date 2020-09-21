@@ -25,7 +25,7 @@ let CACHE = Object.create(null);
  * Cache lifetime:
  *
  * By default the cache will survive for the duration of the process, given
- * that projects have relatively few schema's this should be fine.
+ * that projects have relatively few schemas this should be fine.
  *
  * Although unlikely, if issues arise there is an API to purge the cache in
  * question. NOTE: using this function is not expected behavior, if you are
