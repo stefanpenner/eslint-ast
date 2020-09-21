@@ -3,17 +3,22 @@
 const path = require('path');
 const fs = require('fs');
 
-const { parse, buildSchema, visit } = require('graphql');
+const { parse, visit } = require('graphql');
 const visitorKeys = require('graphql/language/visitor').QueryDocumentKeys;
 
 const toEslintAST = require('./lib/to-eslint-ast');
+const debug = require('debug')('eslint-plugin-graphql:parser');
+
+const memoizedBuildSchema = require('./lib/memoized-build-schema');
 
 module.exports.parseForESLint = function (code, options = {}) {
   let graphqlAST;
   const filePath =
     (typeof options === 'object' && options !== null && options.filePath) || '<unknown file>';
   try {
+    debug('parse:start');
     graphqlAST = parse(code, options);
+    debug('parse:end');
   } catch (e) {
     e.message = `${e.message}\n Could not parse file: ${filePath}\n File Contents:\n ${code}\n`;
     e.file = filePath;
@@ -26,17 +31,21 @@ module.exports.parseForESLint = function (code, options = {}) {
   if (options.schema) {
     // if we are given an absolute path, automatically just read it
     if (path.isAbsolute(options.schema)) {
+      debug('read-file-sync:start');
       schemaString = fs.readFileSync(options.schema, 'UTF8');
+      debug('read-file-sync:end');
     } else {
       throw new Error(
         `options.schema in your .eslintrc must be an absolute path; did you mean '\${__dirname}/${options.schema}'`,
       );
     }
 
-    schema = buildSchema(schemaString);
+    schema = memoizedBuildSchema(schemaString);
   }
 
+  debug('to-eslint-ast:start');
   const ast = toEslintAST(graphqlAST, code);
+  debug('to-eslint-ast:end');
   // turn graphql AST into eslint compatible AST
   return {
     ast,
