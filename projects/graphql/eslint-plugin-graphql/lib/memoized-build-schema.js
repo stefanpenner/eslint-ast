@@ -4,7 +4,7 @@ const crypto = require('crypto');
 const debug = require('debug')('eslint-plugin-graphql:cached-build-schema');
 let CACHE = Object.create(null);
 /*
- * When profiling larg real-world schema's we noticed that a 500kb schema we noticed:
+ * When profiling large real-world schemas we noticed that for a particular 500kb schema:
  *
  * fs.readFileSync was: < 1ms
  * warm graphql.parse was: ~10ms
