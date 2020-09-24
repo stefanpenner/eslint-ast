@@ -18,8 +18,8 @@
     "example": "eslint .",
     "example:lint": "eslint projects/*/example",
     "example:lint:debug": "node debug ./node_modules/.bin/eslint projects/*/example",
-    "test": "mocha projects/*/eslint-plugin-*/tests/**/*-test.js",
-    "test:debug": "mocha --inspect-brk projects/*/eslint-plugin-*/tests/**/*-test.js",
+    "test": "mocha --recursive projects",
+    "test:debug": "mocha --inspect-brk --recursive projects",
     "lint": "eslint ."
   },
   "dependencies": {},

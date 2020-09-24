@@ -39,7 +39,7 @@ describe('graphql-eslint plugin', function () {
   });
 
   it('has the expected members', function () {
-    expect(plugin).to.have.keys(['rules', 'meta', 'create']);
+    expect(plugin).to.have.keys(['rules', 'configs', 'meta', 'create']);
     expect(plugin.rules).to.be.a('object');
     expect(plugin.meta).to.be.a('object');
     expect(plugin.create).to.be.a('function');
