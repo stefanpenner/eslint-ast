@@ -1,5 +1,5 @@
 'use strict';
-const { TypeInfo, ValidationContext } = require('graphql');
+const { ValidationContext } = require('graphql');
 
 function ancestors(node) {
   const result = [];
@@ -31,7 +31,8 @@ module.exports = function adapt(rule) {
   return {
     create(context) {
       const wrappedRules = Object.create(null);
-      const typeInfo = new TypeInfo(context.parserServices.getSchema());
+      const typeInfo = context.parserServices.createTypeInfo();
+
       const validationContext = new ValidationContext(
         context.parserServices.getSchema(),
         context.parserServices.getDocument(),

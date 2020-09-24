@@ -135,29 +135,14 @@ fragment Bar on Object {
       expect(gqlNode).to.not.eql(eslintNode);
     });
   });
-  it('has a functioning visit method', function () {
+
+  it('has a functioning createTypeInfo', function () {
     const result = parser.parseForESLint(`
 query {
   id
 }`);
 
-    const source = `
-fragment Foo on Object {
-  id
-  name
-}
-fragment Bar on Object {
-  id
-}`;
-    const fragments = [];
-    result.services.visit(source, {
-      FragmentDefinition(node) {
-        fragments.push(node);
-      },
-    });
-
-    expect(fragments.length).to.eql(2);
-    expect(fragments[0].kind).to.eql('FragmentDefinition');
-    expect(fragments[1].kind).to.eql('FragmentDefinition');
+    const typeInfo = result.services.createTypeInfo();
+    expect(typeInfo).to.be.instanceof(require('graphql').TypeInfo);
   });
 });

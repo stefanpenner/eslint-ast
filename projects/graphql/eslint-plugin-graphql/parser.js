@@ -3,7 +3,7 @@
 const path = require('path');
 const fs = require('fs');
 
-const { parse, visit } = require('graphql');
+const { parse, visit, TypeInfo } = require('graphql');
 const visitorKeys = require('graphql/language/visitor').QueryDocumentKeys;
 
 const toEslintAST = require('./lib/to-eslint-ast');
@@ -58,7 +58,6 @@ module.exports.parseForESLint = function (code, options = {}) {
       },
     },
 
-    // TODO: tests services
     services: {
       getSchema() {
         return schema;
@@ -66,6 +65,11 @@ module.exports.parseForESLint = function (code, options = {}) {
       getDocument() {
         return this.correspondingNode(ast);
       },
+
+      createTypeInfo() {
+        return new TypeInfo(schema);
+      },
+
       parse(source) {
         return toEslintAST(parse(source, options), source);
       },
@@ -83,13 +87,6 @@ module.exports.parseForESLint = function (code, options = {}) {
         // as can be seen in graphql-rule-adapter
         //
         // TODO: debug this, and decide on the appropriate solution
-      },
-
-      visit(ast, visitor) {
-        if (typeof ast === 'string') {
-          ast = parse(ast, options);
-        }
-        visit(ast, visitor, visitorKeys);
       },
 
       toEslintAST(ast) {
