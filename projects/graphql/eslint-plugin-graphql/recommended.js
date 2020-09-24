@@ -1,6 +1,8 @@
 'use strict';
 
 module.exports = {
+  parser: '@eslint-ast/eslint-plugin-graphql/parser',
+  plugins: ['@eslint-ast/graphql'],
   rules: {
     '@eslint-ast/graphql/single-top-level-query': 'error',
     '@eslint-ast/graphql/ExecutableDefinitionsRule': 'off', // TODO

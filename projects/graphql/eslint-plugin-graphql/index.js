@@ -50,6 +50,9 @@ for (const ruleName of RULES) {
 
 module.exports = {
   rules,
+  configs: {
+    recommended: require('./recommended'),
+  },
 
   // TODO:
   meta: {

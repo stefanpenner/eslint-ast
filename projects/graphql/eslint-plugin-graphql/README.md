@@ -21,12 +21,10 @@ module.exports = {
   overrides: [
     {
       files: '**/*.graphql',
-      parser: '@eslint-ast/eslint-plugin-graphql/parser',
       parserOptions: {
         schema: `${__dirname}/path/to/schema.graphql`,
       },
-      plugins: ['@eslint-ast/eslint-plugin-graphql'],
-      extends: require.resolve('@eslint-ast/eslint-plugin-graphql/recommended.js'),
+      extends: ['plugin:eslint-ast/graphql/recommended']
     },
   ],
 };
