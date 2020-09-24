@@ -65,6 +65,8 @@ module.exports = function adapt(rule) {
       const callbacks = { enter() {}, exit() {} };
 
       wrappedRules['*'] = function (node) {
+        // TODO: gotta pop the stack too!
+        // *:exit(node) => typeInfo.leave(correspondingNode);
         typeInfo.enter(context.parserServices.correspondingNode(node));
         callbacks.enter(node);
         callbacks.exit(node);

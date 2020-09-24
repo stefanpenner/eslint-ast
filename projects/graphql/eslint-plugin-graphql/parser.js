@@ -74,6 +74,31 @@ module.exports.parseForESLint = function (code, options = {}) {
         return toEslintAST(parse(source, options), source);
       },
 
+      pathOf(node, delimiter = '/') {
+        let parts = [];
+        while (typeof node === 'object' && node !== null) {
+          switch (node.type) {
+            case 'Field':
+              parts.unshift(node.name.value);
+              break;
+            case 'OperationDefinition':
+              parts.unshift(node.operation);
+              break;
+            case 'InlineFragment':
+              parts.unshift(`... on ${node.typeCondition.name.value}`);
+              break;
+            case 'ObjectTypeDefinition':
+            case 'InterfaceTypeDefinition':
+            case 'FragmentDefinition':
+            case 'FieldDefinition':
+              parts.unshift(node.name.value);
+              break;
+          }
+          node = node.parent;
+        }
+        return parts.join(delimiter);
+      },
+
       // a way to move between a Node in ESLint AST, and its corresponding graphql AST and back
       // document(node) {
       //   const graphqlASTNode = context.parserServices.correspondingNode(node);
