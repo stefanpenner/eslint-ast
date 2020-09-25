@@ -1,0 +1,37 @@
+type Query {
+  bookstores(max: Int): [Bookstore]
+  packages : [Package]
+}
+
+type Bookstore {
+  name: String!
+  books: [Book]
+}
+
+type Book implements PackageContents {
+  title: String!
+  sales: Int
+  author: Author
+}
+
+type MachinePart implements PackageContents {
+  partNumber: String!
+}
+
+type Author {
+  name: String!
+}
+
+type OnlineDeliveryPackage {
+  url: String!
+  contents: [PackageContents]!
+}
+
+type RegularPackage {
+  store: String!
+  contents: [PackageContents]!
+}
+
+interface PackageContents
+union Package = OnlineDeliveryPackage | RegularPackage
+

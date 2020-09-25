@@ -62,12 +62,16 @@ module.exports = function adapt(rule) {
       );
       const rules = rule(validationContext);
 
-      const callbacks = { enter() {}, exit() {} };
+      const callbacks = { enter() {}, leave() {} };
 
       wrappedRules['*'] = function (node) {
         typeInfo.enter(context.parserServices.correspondingNode(node));
         callbacks.enter(node);
-        callbacks.exit(node);
+      };
+
+      wrappedRules['*:exit'] = function (node) {
+        typeInfo.leave(context.parserServices.correspondingNode(node));
+        callbacks.leave(node);
       };
 
       for (const ruleName in rules) {
