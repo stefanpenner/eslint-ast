@@ -292,6 +292,20 @@ fragment objectFieldSelection on Dog {
   name
 }`,
     },
+    // test two sibling fields w/selection sets which will only work if we
+    // maintain the type stack correctly
+    {
+      code: `
+query {
+  alien {
+    name
+    numEyes
+  }
+  dog {
+    barkVolume
+  }
+}`,
+    },
   ],
   invalid: [
     {
