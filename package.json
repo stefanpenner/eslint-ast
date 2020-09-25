@@ -1,6 +1,6 @@
 {
   "name": "eslint-ast",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "private": true,
   "repository": "git@github.com:stefanpenner/eslint-ast.git",
   "license": "MIT",
