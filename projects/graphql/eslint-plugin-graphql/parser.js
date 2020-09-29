@@ -28,6 +28,12 @@ module.exports.parseForESLint = function (code, options = {}) {
   let schemaString;
   let schema;
 
+  if (typeof options.schema !== 'string') {
+    throw new Error(
+      'ESLint parser "@eslint-ast/graphql" requires parser option "schema", an absolute path to a GraphQL schema',
+    );
+  }
+
   if (options.schema) {
     // if we are given an absolute path, automatically just read it
     if (path.isAbsolute(options.schema)) {

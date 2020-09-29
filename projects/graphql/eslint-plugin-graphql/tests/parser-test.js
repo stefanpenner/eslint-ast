@@ -3,6 +3,8 @@
 const { expect } = require('chai');
 const parser = require('../parser');
 
+const schema = `${__dirname}/rules/schema.graphql`;
+
 describe('parser', function () {
   it('looks about right', function () {
     expect(parser.parseForESLint).to.be.a('function');
@@ -49,6 +51,12 @@ describe('parser', function () {
     }).to.throw(/File Contents:\n random content{\n$/);
   });
 
+  it('throws a useful error if options.schema is not provided', function () {
+    expect(() => {
+      parser.parseForESLint('query { foo { __typename } }', {});
+    }).to.throw(/\@eslint-ast\/graphql.*parser option "schema"/);
+  });
+
   it('throws a useful error if options.schema cannot be found', function () {
     expect(() => {
       parser.parseForESLint('query { foo { __typename } }', {
@@ -69,6 +77,7 @@ describe('parser', function () {
     // we will rely on other more unit tests, or integration tests to ensure the actual complexity is tests
     const result = parser.parseForESLint('fragment apple on Fruit { id }', {
       filePath: 'some-file.graphql',
+      schema,
     });
     expect(result).to.have.keys(['ast', 'scopeManager', 'visitorKeys', 'services']);
   });
@@ -80,16 +89,19 @@ query {
   id
 }
       `;
-      const result = parser.parseForESLint(source);
+      const result = parser.parseForESLint(source, { schema });
       expect(result.services.parse(source)).to.deep.eql(result.ast);
     });
 
     it('has a functioning correspondingNode method', function () {
-      const result = parser.parseForESLint(`
+      const result = parser.parseForESLint(
+        `
 query {
   id
 }
-`);
+`,
+        { schema },
+      );
 
       const eslintNode = result.ast;
       expect(eslintNode).to.be.an('object');
@@ -101,11 +113,14 @@ query {
     });
 
     it('has a functioning getFragmentDefinitionsFromSource method', function () {
-      const result = parser.parseForESLint(`
+      const result = parser.parseForESLint(
+        `
 query {
   id
 }
-`);
+`,
+        { schema },
+      );
 
       const source = `
 fragment Foo on Object {
@@ -137,10 +152,15 @@ fragment Bar on Object {
   });
 
   it('has a functioning createTypeInfo', function () {
-    const result = parser.parseForESLint(`
+    const result = parser.parseForESLint(
+      `
 query {
   id
-}`);
+}`,
+      {
+        schema,
+      },
+    );
 
     const typeInfo = result.services.createTypeInfo();
     expect(typeInfo).to.be.instanceof(require('graphql').TypeInfo);
