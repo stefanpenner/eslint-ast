@@ -54,7 +54,7 @@ describe('parser', function () {
   it('throws a useful error if options.schema is not provided', function () {
     expect(() => {
       parser.parseForESLint('query { foo { __typename } }', {});
-    }).to.throw(/\@eslint-ast\/graphql.*parser option "schema"/);
+    }).to.throw(/@eslint-ast\/graphql.*parser option "schema"/);
   });
 
   it('throws a useful error if options.schema cannot be found', function () {
