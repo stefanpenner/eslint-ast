@@ -13,6 +13,7 @@ interface Mammal {
 }
 interface Pet implements Being {
   name(surname: Boolean): String
+  affection(bittenRecently: Boolean!): PetAffection
 }
 interface Canine implements Mammal & Being {
   name(surname: Boolean): String
@@ -24,8 +25,13 @@ enum DogCommand {
   HEEL
   DOWN
 }
+type PetAffection {
+  value: Int
+}
+
 type Dog implements Being & Pet & Mammal & Canine {
   name(surname: Boolean): String
+  affection(bittenRecently: Boolean!): PetAffection
   nickname: String
   barkVolume: Int
   barks: Boolean
@@ -37,6 +43,7 @@ type Dog implements Being & Pet & Mammal & Canine {
 }
 type Cat implements Being & Pet {
   name(surname: Boolean): String
+  affection(bittenRecently: Boolean!): PetAffection
   nickname: String
   meows: Boolean
   meowsVolume: Int
