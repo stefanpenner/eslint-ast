@@ -747,7 +747,11 @@ tester.run('ProvidedRequiredArgumentsRule', plugin.rules.ProvidedRequiredArgumen
     {
       code: `
 {
-  dog @skip(if: true)
+  cat {
+    affection(bittenRecently: false) {
+      value
+    }
+  }
 }`,
     },
   ],
