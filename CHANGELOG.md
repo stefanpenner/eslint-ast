@@ -1,10 +1,10 @@
 ## v1.0.4 (2020-10-01)
 
 ### :rocket: Enhancement
-* Throw if options.schema is missing (#16)
+* Throw if options.schema is missing [#16](https://github.com/stefanpenner/eslint-ast/pull/16)
 
 ### :bug: Bug Fix
-* Fix typeInfo ordering  (#17)
+* Fix typeInfo ordering  [#17](https://github.com/stefanpenner/eslint-ast/pull/17)
 
 #### Committers: 1
 - David J. Hamilton ([@hjdivad](https://github.com/hjdivad))
