@@ -1,4 +1,15 @@
-## v1.0.2 (2020-09-24)
+## v1.0.4 (2020-10-01)
+
+### :rocket: Enhancement
+* Throw if options.schema is missing (#16)
+
+### :bug: Bug Fix
+* Fix typeInfo ordering  (#17)
+
+#### Committers: 1
+- David J. Hamilton ([@hjdivad](https://github.com/hjdivad))
+
+## v1.0.3 (2020-09-24)
 
 ### :rocket: Enhancement
 * `parserServices.pathOf`  Add a utility for getting a user-friendly name of a path to a node.
