@@ -6,9 +6,10 @@
     "test": "eslint ."
   },
   "dependencies": {
-    "@eslint-ast/eslint-plugin-graphql": "link:../eslint"
+    "@eslint-ast/eslint-plugin-graphql": "1.0.5"
   },
   "devDependencies": {
     "eslint": "^7.6.0"
-  }
+  },
+  "version": "1.0.5"
 }

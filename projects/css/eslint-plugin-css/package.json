@@ -1,6 +1,6 @@
 {
   "name": "@eslint-ast/eslint-plugin-css",
-  "version": "0.1.0",
+  "version": "1.0.5",
   "main": "index.js",
   "license": "MIT",
   "dependencies": {
@@ -12,7 +12,7 @@
     "eslint-plugin-graphql": "link:./eslint/",
     "mocha": "^8.1.0"
   },
-  "engines":  {
+  "engines": {
     "node": "10.* || >= 12"
   },
   "scripts": {

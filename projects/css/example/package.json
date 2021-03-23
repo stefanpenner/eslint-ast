@@ -4,7 +4,8 @@
     "lint": "eslint ."
   },
   "dependencies": {
-    "@eslint-ast/eslint-plugin-css": "link:../eslint",
+    "@eslint-ast/eslint-plugin-css": "1.0.5",
     "eslint": "^7.6.0"
-  }
+  },
+  "version": "1.0.5"
 }

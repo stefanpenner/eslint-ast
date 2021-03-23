@@ -1,3 +1,12 @@
+## v1.0.5 (2021-03-23)
+
+#### :bug: Bug Fix
+* [#19](https://github.com/stefanpenner/eslint-ast/pull/19) fix(parser): pathOf handle fragments with no condition ([@spham92](https://github.com/spham92))
+
+#### Committers: 2
+- David J. Hamilton ([@hjdivad](https://github.com/hjdivad))
+- Steven Pham ([@spham92](https://github.com/spham92))
+
 ## v1.0.4 (2020-10-01)
 
 ### :rocket: Enhancement
