@@ -5,6 +5,34 @@ const parser = require('../parser');
 
 const schema = `${__dirname}/rules/schema.graphql`;
 
+/**
+ * Basic search function for a node with the matching type. This will return the
+ * first node that matches the type. This functions also populates the 'parent'
+ * property as it searches.
+ *
+ * @param {object} root - A node from the AST
+ * @param {string} typeFilter - Node type to look for i.e. InlineFragment
+ */
+function findNode(root, typeFilter) {
+  const nodes = [root];
+
+  while (nodes.length > 0) {
+    const node = nodes.shift();
+
+    if (node.type === typeFilter) {
+      return node;
+    }
+
+    if (node.selectionSet && node.selectionSet.selections.length) {
+      node.selectionSet.selections.forEach(selectionNode => {
+        const clone = { ...selectionNode };
+        clone.parent = node;
+        nodes.push(clone);
+      });
+    }
+  }
+}
+
 describe('parser', function () {
   it('looks about right', function () {
     expect(parser.parseForESLint).to.be.a('function');
@@ -164,5 +192,54 @@ query {
 
     const typeInfo = result.services.createTypeInfo();
     expect(typeInfo).to.be.instanceof(require('graphql').TypeInfo);
+  });
+
+  it('outputs correct path for inline fragment', function () {
+    const result = parser.parseForESLint(
+      `
+query {
+  ... { hello world }
+}`,
+      {
+        schema,
+      },
+    );
+    const inlineFragmentNode = findNode(result.ast.definitions[0], 'InlineFragment');
+    const path = result.services.pathOf(inlineFragmentNode);
+    expect(path).to.be.equal('query/...');
+  });
+
+  it('outputs correct path for nested inline fragment', function () {
+    const result = parser.parseForESLint(
+      `
+query {
+  nested {
+    ... { hello world }
+  }
+}`,
+      {
+        schema,
+      },
+    );
+    const inlineFragmentNode = findNode(result.ast.definitions[0], 'InlineFragment');
+    const path = result.services.pathOf(inlineFragmentNode);
+    expect(path).to.be.equal('query/nested/...');
+  });
+
+  it('outputs correct path for nested inline fragment with condition', function () {
+    const result = parser.parseForESLint(
+      `
+query {
+  nested {
+    ... on Something { hello world }
+  }
+}`,
+      {
+        schema,
+      },
+    );
+    const inlineFragmentNode = findNode(result.ast.definitions[0], 'InlineFragment');
+    const path = result.services.pathOf(inlineFragmentNode);
+    expect(path).to.be.equal('query/nested/... on Something');
   });
 });

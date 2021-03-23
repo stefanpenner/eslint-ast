@@ -91,7 +91,11 @@ module.exports.parseForESLint = function (code, options = {}) {
               parts.unshift(node.operation);
               break;
             case 'InlineFragment':
-              parts.unshift(`... on ${node.typeCondition.name.value}`);
+              if (node.typeCondition) {
+                parts.unshift(`... on ${node.typeCondition.name.value}`);
+              } else {
+                parts.unshift(`...`);
+              }
               break;
             case 'ObjectTypeDefinition':
             case 'InterfaceTypeDefinition':
