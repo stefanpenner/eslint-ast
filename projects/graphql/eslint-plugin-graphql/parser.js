@@ -3,6 +3,7 @@
 const path = require('path');
 const fs = require('fs');
 
+const graphql = require('graphql');
 const { parse, visit, TypeInfo } = require('graphql');
 const visitorKeys = require('graphql/language/visitor').QueryDocumentKeys;
 
@@ -70,6 +71,15 @@ module.exports.parseForESLint = function (code, options = {}) {
       },
       getDocument() {
         return this.correspondingNode(ast);
+      },
+
+      /**
+       * This exists for rules to get the same version of the graphql library
+       * used so that `Duplicate "graphql" modules cannot be used at the ...`
+       * error can be avoided
+       */
+      getGraphQL() {
+        return graphql;
       },
 
       createTypeInfo() {
