@@ -242,4 +242,19 @@ query {
     const path = result.services.pathOf(inlineFragmentNode);
     expect(path).to.be.equal('query/nested/... on Something');
   });
+
+  it('has a functioning getGraphQL that returns graphql lib', function () {
+    const result = parser.parseForESLint(
+      `
+query {
+  id
+}`,
+      {
+        schema,
+      },
+    );
+
+    const graphqlLib = result.services.getGraphQL();
+    expect(graphqlLib.isListType).to.be.equal(require('graphql').isListType);
+  });
 });
