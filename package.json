@@ -1,6 +1,6 @@
 {
   "name": "eslint-ast",
-  "version": "1.0.5",
+  "version": "2.0.0",
   "private": true,
   "repository": "git@github.com:stefanpenner/eslint-ast.git",
   "license": "MIT",
@@ -48,7 +48,9 @@
         "launchEditor": true
       },
       "release-it-yarn-workspaces": {
-        "workspaces": ["projects/graphql/eslint-plugin-graphql"]
+        "workspaces": [
+          "projects/graphql/eslint-plugin-graphql"
+        ]
       }
     },
     "git": {

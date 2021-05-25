@@ -1,3 +1,16 @@
+## v2.0.0 (2021-05-25)
+
+#### :boom: Breaking Change
+* [#26](https://github.com/stefanpenner/eslint-ast/pull/26) Drop node 10 ([@hjdivad](https://github.com/hjdivad))
+
+#### :rocket: Enhancement
+* [#27](https://github.com/stefanpenner/eslint-ast/pull/27) Add getGraphQL to parser services ([@spham92](https://github.com/spham92))
+
+#### Committers: 2
+- David J. Hamilton ([@hjdivad](https://github.com/hjdivad))
+- Steven Pham ([@spham92](https://github.com/spham92))
+
+
 ## v1.0.5 (2021-03-23)
 
 #### :bug: Bug Fix
