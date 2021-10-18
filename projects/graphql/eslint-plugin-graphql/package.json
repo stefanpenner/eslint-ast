@@ -11,7 +11,7 @@
   },
   "devDependencies": {
     "chai": "^4.2.0",
-    "eslint": "^7.32.0",
+    "eslint": "^8.0.1",
     "fixturify-project": "^4.0.2"
   },
   "engines": {
