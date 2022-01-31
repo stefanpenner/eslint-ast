@@ -7,7 +7,7 @@
     "debug": "^4.3.3",
     "graphql": "^15.6.1",
     "mocha": "^8.1.0",
-    "resolve": "^1.17.0"
+    "resolve": "^1.22.0"
   },
   "devDependencies": {
     "chai": "^4.3.6",
