@@ -8,7 +8,7 @@
   },
   "devDependencies": {
     "chai": "^4.2.0",
-    "eslint": "^7.5.0",
+    "eslint": "^8.30.0",
     "eslint-plugin-graphql": "link:./eslint/",
     "mocha": "^8.1.0"
   },
